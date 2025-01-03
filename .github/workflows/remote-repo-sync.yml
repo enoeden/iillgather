@@ -25,4 +25,17 @@ jobs:
       id: parse-sync-config
       shell: bash
       run: | 
-        curl -vv -A okhttp  'https://tv.iill.top/m3u/Gather'
+        curl ifconfig.me
+        curl -vv -A okhttp 'https://tv.iill.top/m3u/Gather' -o iill.m3u
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        if [[ `git status --porcelain` ]]; then
+          git add .
+          git commit -F- <<EOF
+        chore: sync iill
+        EOF
+        else
+          echo "No changes to commit"
+        fi
+        git push origin main
+        exit 0
