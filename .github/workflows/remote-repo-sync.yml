@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   sync:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
       id: sync
       shell: bash
       run: | 
-        curl ifconfig.me
+        
         curl -vv -A okhttp 'https://tv.iill.top/m3u/Gather' -o iill.m3u
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
@@ -38,4 +38,5 @@ jobs:
           echo "No changes to commit"
         fi
         git push origin main
+        curl ifconfig.me
         exit 0
