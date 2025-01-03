@@ -40,4 +40,5 @@ jobs:
         git push origin main
         curl ifconfig.me
         curl --version
+        uname -a
         exit 0
