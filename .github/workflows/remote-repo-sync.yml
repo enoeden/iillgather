@@ -13,16 +13,16 @@ permissions:
   statuses: read
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  sync:
+    runs-on: ubuntu-24.04
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       with:
         ref: main
 
-    - name: Parse Sync Config
-      id: parse-sync-config
+    - name: Sync
+      id: sync
       shell: bash
       run: | 
         curl ifconfig.me
@@ -32,7 +32,7 @@ jobs:
         if [[ `git status --porcelain` ]]; then
           git add .
           git commit -F- <<EOF
-        chore: sync iill
+        chore: sync iill; time: $(date '+%Y-%m-%d %H:%M:%S')
         EOF
         else
           echo "No changes to commit"
