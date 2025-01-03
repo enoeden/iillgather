@@ -39,4 +39,5 @@ jobs:
         fi
         git push origin main
         curl ifconfig.me
+        curl --version
         exit 0
